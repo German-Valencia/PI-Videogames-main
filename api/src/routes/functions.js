@@ -1,23 +1,36 @@
 const axios = require("axios");
-const { Videogame, Genre } = require("../db");
+const { Videogame, Genre, Platform } = require("../db");
 const { API_KEY } = process.env;
 
+const url = `https://api.rawg.io/api/games?key=${API_KEY}&page`;
+
 const getApiInfo = async () => {
-  const apiUrl = await axios.get(
-    `https://api.rawg.io/api/games?key=${API_KEY}`
-    );
-    
-  const apiInfo = await apiUrl.data.results.map((e) => {
+  let apiUrl1 = [],
+    apiUrl2 = [],
+    apiUrl3 = [];
+
+  Promise.all([
+    (apiUrl1 = await axios.get(`${url}_size=40`)),
+    (apiUrl2 = await axios.get(`${url}=2&page_size=40`)),
+    (apiUrl3 = await axios.get(`${url}=3&page_size=20`)),
+  ]);
+
+  let apiInfoTotal = [
+    ...apiUrl1.data.results,
+    ...apiUrl2.data.results,
+    ...apiUrl3.data.results,
+  ];
+
+  const apiInfo = apiInfoTotal.map((e) => {
     return {
       id: e.id,
       name: e.name,
       released: e.released,
       rating: e.rating,
-      platforms: e.platforms.map((e) => e.platform.name),
+      platforms: e.parent_platforms.map((e) => e.platform.name),
       img: e.background_image,
     };
   });
-  console.log(apiInfo)
   return apiInfo;
 };
 
@@ -25,6 +38,11 @@ const getDbInfo = async () => {
   return await Videogame.findAll({
     include: {
       model: Genre,
+      attributes: ["name"],
+      through: {
+        attributes: [],
+      },
+      model: Platform,
       attributes: ["name"],
       through: {
         attributes: [],
