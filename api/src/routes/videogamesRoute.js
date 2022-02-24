@@ -19,6 +19,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const videogamesTotal = await getAllVideogames();
+  if (id) {
+    let videogamesId = videogamesTotal.filter((e) => e.id.toString() === id);
+    videogamesId.length
+      ? res.status(200).json(videogamesId)
+      : res.status(404).send("Game not found");
+  }
+});
+
 router.post("/", async (req, res) => {
   let {
     id,
@@ -44,7 +55,7 @@ router.post("/", async (req, res) => {
     createdInDb,
   });
 
-   let genreDb = await Genre.findAll({
+  let genreDb = await Genre.findAll({
     where: { name: genre },
   });
 
@@ -52,9 +63,7 @@ router.post("/", async (req, res) => {
     where: { name: platform },
   });
 
-  videogameCreated.addGenre(genreDb),
-
-  videogameCreated.addPlatform(platformDb);
+  videogameCreated.addGenre(genreDb), videogameCreated.addPlatform(platformDb);
 
   res.send("Video Game created successfully");
 });
