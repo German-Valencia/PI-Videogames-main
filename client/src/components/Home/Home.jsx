@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideogames } from "../../actions/index";
 import { Link } from "react-router-dom";
+import Card from "../Card/Card";
+import styles from "./Home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -29,7 +31,7 @@ export default function Home() {
       </button>
       <div>
         <select name="" id="">
-        <option value="all">ALL</option>
+          <option value="all">ALL</option>
           <option value="api">API</option>
           <option value="bd">BD</option>
         </select>
@@ -49,6 +51,16 @@ export default function Home() {
         </select>
 
         <select name="" id=""></select>
+
+        {allVideogames?.map((e, i) => {                   
+          return (
+            <div key={i}>
+              <Link to={"/home/" + e.id}>
+                <Card name={e.name} img={e.img} genre={e.genre} />
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

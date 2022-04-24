@@ -1,0 +1,5 @@
+html body {
+    background: url("../../img/home.jpg") no-repeat center center fixed;
+    background-size: cover;
+    width: 100%;
+  }
