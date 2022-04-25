@@ -1,4 +1,3 @@
-
 const axios = require("axios");
 const { Videogame, Genre, Platform } = require("../db");
 const { API_KEY } = process.env;
@@ -28,7 +27,7 @@ const getApiInfo = async () => {
       name: e.name,
       released: e.released,
       rating: e.rating,
-      genre: e.genres.map((e)=>e.name),
+      genre: e.genres.map((e) => e.name),
       platforms: e.parent_platforms.map((e) => e.platform.name),
       img: e.background_image,
     };

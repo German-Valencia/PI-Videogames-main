@@ -5,6 +5,7 @@ const { API_KEY } = process.env;
 const router = express.Router();
 
 const url = `https://api.rawg.io/api/platforms/lists/parents?key=${API_KEY}`;
+
 router.get("/", async (req, res) => {
   const platformApi = await axios.get(url);
   const platform = platformApi.data.results.map((e) => e.name);

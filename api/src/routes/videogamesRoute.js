@@ -26,7 +26,9 @@ router.get("/:id", async (req, res) => {
     let videogamesId = videogamesTotal.filter((e) => e.id.toString() === id);
     videogamesId.length
       ? res.status(200).json(videogamesId)
-      : res.status(404).send("Game not found");
+      : res.status(404).send("Video game not found");
+  }else {
+    res.status(200).send(videogamesTotal);
   }
 });
 
