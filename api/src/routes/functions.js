@@ -25,6 +25,7 @@ const getApiInfo = async () => {
     return {
       id: e.id,
       name: e.name,
+      description: e.description,
       released: e.released,
       rating: e.rating,
       genre: e.genres.map((e) => e.name),
@@ -53,10 +54,14 @@ const getDbInfo = async () => {
 };
 
 const getAllVideogames = async () => {
+  try{
   const apiInfo = await getApiInfo();
   const dbInfo = await getDbInfo();
   const infoTotal = apiInfo.concat(dbInfo);
   return infoTotal;
+  } catch (e){
+    console.log(e)
+  }
 };
 
 module.exports = {

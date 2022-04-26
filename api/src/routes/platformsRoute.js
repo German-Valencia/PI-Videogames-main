@@ -8,10 +8,10 @@ const url = `https://api.rawg.io/api/platforms/lists/parents?key=${API_KEY}`;
 
 router.get("/", async (req, res) => {
   const platformApi = await axios.get(url);
-  const platform = platformApi.data.results.map((e) => e.name);
+  const platforms = platformApi.data.results.map((e) => e.name);
   const id = platformApi.data.results.map((e) => e.id);
 
-  platform.forEach((e, i) => {
+  platforms.forEach((e, i) => {
     Platform.findOrCreate({
       where: { name: e, id: id[i] },
     });
