@@ -1,36 +1,37 @@
 .bg {
-    background: url("../../img/landing.jpg") no-repeat center center fixed;
+    background: url("../../img/landing.png") no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
     width: 100vw;
   }
   
   .img {
-    /* width: 35vw;
-    height: 25vh; */
-    width:250px; 
-    height:125px;
+ /*    width: 13vw;
+    height: 5vh; */
+    width:200px; 
+    height:200px;
     margin-top: 15vh;
-    margin-right: 25vw;    
+    margin-left: 64vw;
+    border-radius: 100px;
   }
   
   .author {
-    font-size: 3vw;
-    margin-top: -13vh;
-    margin-right: 25vw;
-    color: #00ff5581;
+    font-size: 1.3vw;
+    margin-top: -14.5vh;
+    margin-left: 64vw;
+    color: #ffe600a9;
   }
   
   .buttonIng {
-    width: 20vw;
+    width: 13vw;
     height: 5vh;
-    margin-top: 5vh;
-    margin-right: 25vw;
-    background-color: #1c0de2;
+    margin-top: 10vh;
+    margin-left: 64vw;
+    background-color: #e20d0d;
     color: rgb(255, 217, 2);
     border: none;
     border-radius: 10px;
-    box-shadow: 0px 0px 20px 0px rgb(0, 4, 255);
+    box-shadow: 0px 0px 20px 0px rgb(255, 255, 255);
     font-size: 1.5vw;
     -webkit-text-stroke: 0.5px black;
     font-weight: bold;

@@ -1,12 +1,12 @@
 const express = require("express");
-const { getAllVideogames } = require("./functions");
+const { getAllVideogames, getVideogameDetail } = require("./functions");
 const { Videogame, Genre, Platform } = require("../db");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const { name } = req.query;
-  const videogamesTotal = await getAllVideogames();
+  let { name } = req.query;
+  let videogamesTotal = await getAllVideogames();
   if (name) {
     let videogameName = videogamesTotal.filter((e) =>
       e.name.toLowerCase().includes(name.toLowerCase())
@@ -20,20 +20,14 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const videogamesTotal = await getAllVideogames();
-  if (id) {
-    let videogamesId = videogamesTotal.filter((e) => e.id.toString() === id);
-    videogamesId.length
-      ? res.status(200).json(videogamesId)
-      : res.status(404).send("Video game not found");
-  } else {
-    res.status(200).send(videogamesTotal);
-  }
+  let { id } = req.params;
+  let videogamesTotal = await getVideogameDetail(id);
+  res.status(200).send(videogamesTotal);
 });
 
 router.post("/", async (req, res) => {
-  let { name, description, released, rating, platforms, genre, img } = req.body;
+  let { name, description, released, rating, platforms, genres, img } =
+    req.body;
   try {
     if (name) {
       const allVideoGame = await getAllVideogames();
@@ -48,10 +42,10 @@ router.post("/", async (req, res) => {
           rating,
           img,
           platforms,
-          genre,
+          genres,
         });
         const genreDb = await Genre.findAll({
-          where: { name: genre },
+          where: { name: genres },
         });
 
         const platformDb = await Platform.findAll({

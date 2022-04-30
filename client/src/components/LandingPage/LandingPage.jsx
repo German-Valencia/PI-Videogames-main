@@ -7,7 +7,7 @@ export default function LandingPage() {
   return (
     <div className={styles.bg}>
       <img src={videogamesimg} alt="img not found" className={styles.img}/>
-      <h2 className={styles.author}>By... Gav</h2>
+      <h3 className={styles.author}>Videogames by Gav</h3>
       <Link to="/home">
         <button className={styles.buttonIng}>Start</button>
       </Link>

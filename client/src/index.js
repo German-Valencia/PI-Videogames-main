@@ -7,7 +7,7 @@ import {Provider} from "react-redux"; //se importa el provider para envolver la 
 import store from './store' // se importa el store para que la app lo reconozca como estado global
 
 ReactDOM.render(
-  <Provider store={store}> {/* aplicación dentro del provider que le permite saber del store y usarlo */}
+  <Provider store={store}>                     {/* aplicación dentro del provider que le permite saber del store y usarlo */}
   <React.StrictMode>
     <App />
   </React.StrictMode>
