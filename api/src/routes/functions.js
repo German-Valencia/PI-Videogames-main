@@ -37,8 +37,10 @@ const getApiInfo = async () => {
 
 const getVideogameDetail = async (arg) => {
   try {
-    const apiData = await axios.get(`https://api.rawg.io/api/games/${arg}?key=${API_KEY}`);
-    const data = await apiData.data;   
+    const apiData = await axios.get(
+      `https://api.rawg.io/api/games/${arg}?key=${API_KEY}`
+    );
+    const data = await apiData.data;
     const videogameData = {
       id: data.id,
       name: data.name,
@@ -49,7 +51,7 @@ const getVideogameDetail = async (arg) => {
       img: data.background_image,
       description: data.description_raw,
     };
-    
+
     return videogameData;
   } catch (e) {
     console.log(e);

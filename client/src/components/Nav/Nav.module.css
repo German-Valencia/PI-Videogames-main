@@ -11,10 +11,10 @@
 }
 
 .img {
-    width: 15vw;
-    height: 15vh;
-    border-radius: 5px;
-    margin-left: 6.2vw;
+    width: 10vw;
+    height: 10vh;
+  /*   border-radius: 5px; */
+    margin-left: 9vw;
 }
 
 .btn {
