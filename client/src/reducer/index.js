@@ -59,9 +59,17 @@ function rootReducer(state = initialState, action) {
       let genreFiltered =
         action.payload === "all"
           ? copyTwo
-          : copyTwo.filter((e) =>
-              e.genres.some((e) => e.name === action.payload)
-            );
+          : copyTwo.filter((e) => {
+              if (!e.createdInDb) {
+                if (e.genres.some((e) => e === action.payload)) {
+                  return e;
+                }
+              } else if (e.createdInDb) {
+                e.genres.some((e) => e.name === action.payload);
+                return e;
+              }
+              return false;
+            });
       if (genreFiltered.length <= 0) {
         genreFiltered = copyTwo;
         alert("There are no videogames of the indicated genre");
@@ -99,7 +107,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         videogames: action.payload,
       };
-    case GET_DETAILS:
+    case GET_DETAILS:      
       return {
         ...state,
         videogameDetail: action.payload,

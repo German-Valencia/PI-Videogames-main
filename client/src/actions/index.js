@@ -120,11 +120,11 @@ export const getVideogameByName = (payload) => {
 export const getDetail = (id) => {
   return async (dispatch) => {
     try {
-      let json = await axios.get(`http://localhost:3001/videogames/${id}`);      
+      let json = await axios.get(`http://localhost:3001/videogames/${id}`);
       return dispatch({
         type: GET_DETAILS,
-        payload: json.data,     
-      });      
+        payload: json.data,
+      });
     } catch (e) {
       console.log(e);
     }

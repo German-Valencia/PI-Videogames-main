@@ -70,6 +70,8 @@ export default function Home() {
                         name={e.name}
                         image={e.img}
                         genres={e.genres}
+                        createdInDb={e.createdInDb}
+                        rating={e.rating}
                       />
                     </div>
                   );

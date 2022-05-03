@@ -12,7 +12,7 @@ import styles from "./Filters.module.css";
 
 const Filters = ({ setCurrentPage, setOrder }) => {
   const dispatch = useDispatch();
-  const allGenres = useSelector((state) => state.types);
+  const allGenres = useSelector((state) => state.genres);
 
   useEffect(() => {
     dispatch(getAllGenres());

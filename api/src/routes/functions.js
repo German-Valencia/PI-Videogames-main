@@ -96,6 +96,17 @@ const getDbInfo = async () => {
   });
 };
 
+const getAllVideogameDetail = async (arg) => {
+  try {
+    const apiDetail = await getVideogameDetail(arg);
+    const dbInfo = await getDbInfo();
+    const detailTotal = dbInfo.concat(apiDetail);
+    return detailTotal;
+  } catch (e) {
+    console.log(e)
+  }
+};
+
 const getAllVideogames = async () => {
   try {
     const apiInfo = await getApiInfo();
@@ -112,4 +123,5 @@ module.exports = {
   getDbInfo,
   getAllVideogames,
   getVideogameDetail,
+  getAllVideogameDetail,
 };

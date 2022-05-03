@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllVideogames, getVideogameDetail } = require("./functions");
+const { getAllVideogames, getAllVideogameDetail } = require("./functions");
 const { Videogame, Genre, Platform } = require("../db");
 
 const router = express.Router();
@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   let { id } = req.params;
-  let videogamesTotal = await getVideogameDetail(id);
+  let videogamesTotal = await getAllVideogameDetail(id);
   res.status(200).send(videogamesTotal);
 });
 
