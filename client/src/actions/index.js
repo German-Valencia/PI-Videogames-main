@@ -4,6 +4,7 @@ export const GET_VIDEOGAMES = "GET_VIDEOGAMES";
 export const CLEAN_VIDEOGAMES = "CLEAN_VIDEOGAMES";
 export const GET_VIDEOGAME_NAME = "GET_VIDEOGAME_NAME";
 export const GET_ALL_GENRES = "GET_ALL_GENRES";
+export const GET_ALL_PLATFORMS = "GET_ALL_PLATFORMS";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const ORDER_NAME = "ORDER_NAME";
 export const FILTER_GENRE = "FILTER_GENRE";
@@ -39,6 +40,20 @@ export const getAllGenres = () => {
       let json = await axios.get("http://localhost:3001/genres");
       return dispatch({
         type: GET_ALL_GENRES,
+        payload: json.data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const getAllPlatforms = () => {
+  return async (dispatch) => {
+    try {
+      let json = await axios.get("http://localhost:3001/platforms");
+      return dispatch({
+        type: GET_ALL_PLATFORMS,
         payload: json.data,
       });
     } catch (e) {

@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { getAllGenres, postVideogame, cleanVideogames } from "../../actions";
+import {
+  getAllGenres,
+  postVideogame,
+  cleanVideogames,
+  getAllPlatforms,
+} from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./VideogameCreate.module.css";
 
 const VideogameCreate = () => {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
-  //const platforms = useSelector((state) => state.platforms);
+  const platforms = useSelector((state) => state.platforms);
   const [errors, setErrors] = useState({});
   const history = useHistory();
 
@@ -22,38 +27,35 @@ const VideogameCreate = () => {
   });
 
   let noEmpty = /\S+/;
-  let validateName = /^[a-z]+$/i;
+  let validateName = /^.{5,200}$/;
   let validateNum = /^\d+$/;
   let validateUrl = /^(ftp|http|https):\/\/[^ "]+$/;
+  let validateDate = /^\d{4}\/\d{2}\/\d{2}$/;
+  let validateWords = /^.{5,200}$/;
 
   const validate = (input) => {
     let errors = {};
     if (
       !noEmpty.test(input.name) ||
       !validateName.test(input.name) ||
-      input.name.length < 3
+      input.name.length < 5
     ) {
-      errors.name =
-        "Name required. Only string of more than two characters and without numbers";
+      errors.name = "Name required. more than 5 characters";
     }
-    if (!validateNum.test(input.hp) || parseInt(input.hp) < 1) {
-      errors.hp = "Number required. Higher than one";
+    if (!validateNum.test(input.rating) || parseInt(input.rating) < 1) {
+      errors.rating = "Number required. Higher than 1";
     }
-    if (!validateNum.test(input.attack) || parseInt(input.attack) < 1) {
-      errors.attack = "Number required. Higher than one";
+    if (!validateDate.test(input.released) || parseInt(input.released) < 1) {
+      errors.released = "Released required. YYYY/MM/DD";
     }
-    if (!validateNum.test(input.defense) || parseInt(input.defense) < 1) {
-      errors.defense = "Number required. Higher than one";
+    if (
+      !validateWords.test(input.description) ||
+      parseInt(input.description) < 1
+    ) {
+      errors.description =
+        "Description required. Higher than 5 characters and less than 200 ";
     }
-    if (!validateNum.test(input.speed) || parseInt(input.speed) < 1) {
-      errors.speed = "Number required. Higher than one";
-    }
-    if (!validateNum.test(input.height) || parseInt(input.height) < 1) {
-      errors.height = "Number required. Higher than one";
-    }
-    if (!validateNum.test(input.weight) || parseInt(input.weight) < 1) {
-      errors.weight = "Number required. Higher than one";
-    }
+    
     if (!validateUrl.test(input.img)) {
       errors.img = "URL required";
     }
@@ -79,9 +81,21 @@ const VideogameCreate = () => {
         ...input,
         genres: [...input.genres, e.target.value],
       });
-      e.target.value = "Select type";
+      e.target.value = "Select genre";
     } else {
       alert("You cannot choose more than two genres of videogame");
+    }
+  };
+
+  const handleSelect1 = (e) => {
+    if (input.platforms.length < 2) {
+      setInput({
+        ...input,
+        platforms: [...input.platforms, e.target.value],
+      });
+      e.target.value = "Select platform";
+    } else {
+      alert("You cannot choose more than two platforms of videogame");
     }
   };
 
@@ -90,24 +104,25 @@ const VideogameCreate = () => {
 
     if (
       !errors.name &&
-      !errors.hp &&
-      !errors.attack &&
-      !errors.defense &&
-      !errors.speed &&
+      !errors.rating &&
+      !errors.released &&
+      !errors.description &&
+      /*  !errors.speed &&
       !errors.height &&
-      !errors.weight &&
+      !errors.weight && */
       !errors.img
     ) {
       dispatch(postVideogame(input));
       setInput({
         name: "",
-        hp: "",
-        attack: "",
-        defense: "",
-        speed: "",
+        rating: "",
+        released: "",
+        description: "",
+        /*   speed: "",
         height: "",
-        weight: "",
-        types: [],
+        weight: "", */
+        genres: [],
+        platforms: [],
         img: "",
       });
       dispatch(cleanVideogames(dispatch));
@@ -121,11 +136,16 @@ const VideogameCreate = () => {
     setInput({
       ...input,
       genres: input.genres.filter((genre) => genre !== e),
+      platforms: input.platforms.filter((platforms) => platforms !== e),
     });
   };
 
   useEffect(() => {
     dispatch(getAllGenres());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllPlatforms());
   }, [dispatch]);
 
   return (
@@ -154,80 +174,44 @@ const VideogameCreate = () => {
               placeholder="Name"
             />
             <p className={styles.p}>{errors.name}</p>
-            <label className={styles.label}>HP:</label>
+            <label className={styles.label}>Rating:</label>
             <input
               className={styles.input}
               type="number"
-              value={input.hp}
-              name="hp"
+              value={input.rating}
+              name="rating"
               onChange={(e) => {
                 handleChange(e);
               }}
-              placeholder="HP"
+              placeholder="Rating 1-5"
             />
-            <p className={styles.p}>{errors.hp}</p>
-            <label className={styles.label}>Attack:</label>
+            <p className={styles.p}>{errors.rating}</p>
+            <label className={styles.label}>Released:</label>
             <input
               className={styles.input}
-              type="number"
-              value={input.attack}
-              name="attack"
+              type="text"
+              value={input.released}
+              name="released"
               onChange={(e) => {
                 handleChange(e);
               }}
-              placeholder="Attack"
+              placeholder="YYYY/MM/DD"
             />
-            <p className={styles.p}>{errors.attack}</p>
-            <label className={styles.label}>Defense:</label>
+            <p className={styles.p}>{errors.released}</p>
+            <label className={styles.label}>Description:</label>
             <input
               className={styles.input}
-              type="number"
-              value={input.defense}
-              name="defense"
+              type="text"
+              value={input.description}
+              name="description"
               onChange={(e) => {
                 handleChange(e);
               }}
-              placeholder="Defense"
+              placeholder="Description"
             />
-            <p className={styles.p}>{errors.defense}</p>
+            <p className={styles.p}>{errors.description}</p>
           </div>
           <div className={styles.divito}>
-            <label className={styles.label}>Speed:</label>
-            <input
-              className={styles.input}
-              type="number"
-              value={input.speed}
-              name="speed"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              placeholder="Speed"
-            />
-            <p className={styles.p}>{errors.speed}</p>
-            <label className={styles.label}>Height:</label>
-            <input
-              className={styles.input}
-              type="number"
-              value={input.height}
-              name="height"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              placeholder="Height"
-            />
-            <p className={styles.p}>{errors.height}</p>
-            <label className={styles.label}>Weight:</label>
-            <input
-              className={styles.input}
-              type="number"
-              value={input.weight}
-              name="weight"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              placeholder="Weight"
-            />
-            <p className={styles.p}>{errors.weight}</p>
             <label className={styles.label}>Image:</label>
             <input
               className={styles.input}
@@ -259,6 +243,38 @@ const VideogameCreate = () => {
             })}
           </select>
           {input.genres?.map((e) => {
+            return (
+              <div className={styles.typesSelect} key={e}>
+                <p className={styles.pTypes}>{e}</p>
+                <button
+                  className={styles.btnDelete}
+                  onClick={() => {
+                    handleDelete(e);
+                  }}
+                >
+                  X
+                </button>
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.element}>
+          <select
+            className={styles.select}
+            onChange={(e) => {
+              handleSelect1(e);
+            }}
+          >
+            <option>Select Platform</option>
+            {platforms?.map((e) => {
+              return (
+                <option key={e.id} value={e.name}>
+                  {e.name}
+                </option>
+              );
+            })}
+          </select>
+          {input.platforms?.map((e) => {
             return (
               <div className={styles.typesSelect} key={e}>
                 <p className={styles.pTypes}>{e}</p>

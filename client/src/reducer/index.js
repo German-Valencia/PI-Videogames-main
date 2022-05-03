@@ -3,13 +3,14 @@ import {
   CLEAN_VIDEOGAMES,
   GET_VIDEOGAME_NAME,
   GET_ALL_GENRES,
+  GET_ALL_PLATFORMS,
   FILTER_CREATED,
   ORDER_NAME,
   FILTER_GENRE,
   ORDER_RATING,
   POST_VIDEOGAME,
   GET_DETAILS,
-  CLEAN_DETAIL,
+  CLEAN_DETAIL,  
 } from "../actions";
 
 const initialState = {
@@ -40,6 +41,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         genres: action.payload,
       };
+      case GET_ALL_PLATFORMS:
+        return{
+          ...state,
+          platforms: action.payload,
+        }
     case FILTER_CREATED:
       let copy = state.allVideogames;
       let createdFiltered;
