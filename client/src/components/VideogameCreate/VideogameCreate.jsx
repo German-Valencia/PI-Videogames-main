@@ -249,7 +249,7 @@ const VideogameCreate = () => {
               handleSelect(e);
             }}
           >
-            <option>Select type</option>
+            <option>Select Genre</option>
             {genres?.map((e) => {
               return (
                 <option key={e.id} value={e.name}>
@@ -258,7 +258,7 @@ const VideogameCreate = () => {
               );
             })}
           </select>
-          {input.types.map((e) => {
+          {input.genres?.map((e) => {
             return (
               <div className={styles.typesSelect} key={e}>
                 <p className={styles.pTypes}>{e}</p>

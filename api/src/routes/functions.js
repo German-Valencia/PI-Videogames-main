@@ -2,23 +2,29 @@ const axios = require("axios");
 const { Videogame, Genre, Platform } = require("../db");
 const { API_KEY } = process.env;
 
-const url = `https://api.rawg.io/api/games?key=${API_KEY}&page`;
+const url = `https://api.rawg.io/api/games?key=${API_KEY}`;
 
 const getApiInfo = async () => {
   let apiUrl1 = [],
     apiUrl2 = [],
-    apiUrl3 = [];
+    apiUrl3 = [],
+    apiUrl4 = [],
+    apiUrl5 = [];
 
   Promise.all([
-    (apiUrl1 = await axios.get(`${url}_size=40`)),
-    (apiUrl2 = await axios.get(`${url}=2&page_size=40`)),
-    (apiUrl3 = await axios.get(`${url}=3&page_size=20`)),
+    (apiUrl1 = await axios.get(url)),
+    (apiUrl2 = await axios.get(`${url}&page=2`)),
+    (apiUrl3 = await axios.get(`${url}&page=3`)),
+    (apiUrl4 = await axios.get(`${url}&page=4`)),
+    (apiUrl5 = await axios.get(`${url}&page=5`)),
   ]);
 
   let apiInfoTotal = [
     ...apiUrl1.data.results,
     ...apiUrl2.data.results,
     ...apiUrl3.data.results,
+    ...apiUrl4.data.results,
+    ...apiUrl5.data.results,
   ];
 
   const apiInfo = apiInfoTotal.map((e) => {
@@ -103,7 +109,7 @@ const getAllVideogameDetail = async (arg) => {
     const detailTotal = dbInfo.concat(apiDetail);
     return detailTotal;
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 };
 

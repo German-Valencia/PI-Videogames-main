@@ -90,8 +90,6 @@ const Filters = ({ setCurrentPage, setOrder }) => {
           }}
           className={styles.select}
         >
-          {/*     <option className={styles.order}>Choose order...</option> */}
-
           <option className={styles.order}>Rating</option>
 
           <option value="asc">ASC</option>

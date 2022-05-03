@@ -18,12 +18,11 @@ export default function Card({ name, image, genres, id, createdInDb, rating }) {
           <h2>{name}</h2>
           <div>Rating: {rating}</div>
           <h4>Genres:</h4>
-
           {!createdInDb ? (
             <div className={styles.genres}>
               {genres?.map((e, k) => {
                 return (
-                  <div className={styles.genres} key={k}>
+                  <div className={styles.genres} key={`${k}g`}>
                     <p className={styles.text}>{e},</p>
                   </div>
                 );
@@ -33,7 +32,7 @@ export default function Card({ name, image, genres, id, createdInDb, rating }) {
             <div className={styles.genres}>
               {genres?.map((e, k) => {
                 return (
-                  <div className={styles.genres} key={k}>
+                  <div className={styles.genres} key={`${k}g1`}>
                     <p className={styles.text}> {e.name}, </p>
                   </div>
                 );

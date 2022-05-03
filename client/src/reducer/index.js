@@ -65,8 +65,9 @@ function rootReducer(state = initialState, action) {
                   return e;
                 }
               } else if (e.createdInDb) {
-                e.genres.some((e) => e.name === action.payload);
-                return e;
+                if (e.genres.some((e) => e.name === action.payload)) {
+                  return e;
+                }
               }
               return false;
             });
@@ -100,14 +101,14 @@ function rootReducer(state = initialState, action) {
           : copy4.sort((a, b) => b.rating - a.rating);
       return {
         ...state,
-        pokemons: sortedRating,
+        videogames: sortedRating,
       };
     case GET_VIDEOGAME_NAME:
       return {
         ...state,
         videogames: action.payload,
       };
-    case GET_DETAILS:      
+    case GET_DETAILS:
       return {
         ...state,
         videogameDetail: action.payload,

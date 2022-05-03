@@ -19,7 +19,10 @@ export default function Home() {
   //Para modificar el estado local y me ayude al renderizado
   const indexOfLastVideogame = currentPage * videogamesPerPage;
   const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage;
-  const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
+  const currentVideogames = allVideogames.slice(
+    indexOfFirstVideogame,
+    indexOfLastVideogame
+  );
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -62,10 +65,10 @@ export default function Home() {
                 />
               </div>
               <div className={styles.cards}>
-                {currentVideogames?.map((e, k) => {
+                {currentVideogames?.map((e) => {
                   return (
                     <div key={e.id} className={styles.card}>
-                      <Card                        
+                      <Card
                         id={e.id}
                         name={e.name}
                         image={e.img}
