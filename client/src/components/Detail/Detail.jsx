@@ -30,7 +30,7 @@ const Detail = (props) => {
             <div className={styles.container}>
               <div className={styles.card}>
                 <h2 className={styles.h2}> {e.name} </h2>
-                <p className={styles.p}>#{e.id}</p>
+                <p className={styles.p}><b>Id:</b> #{e.id}</p>
                 <img
                   src={e.img ? e.img : noImage}
                   alt="img not found"
@@ -66,6 +66,7 @@ const Detail = (props) => {
                 </div>
 
                 <p>Platfomrs:</p>
+                
                 <div className={styles.types}>
                   <h3>
                     <div className={styles.types}>

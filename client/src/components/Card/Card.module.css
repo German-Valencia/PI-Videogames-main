@@ -10,7 +10,7 @@
     align-items: center;
     gap: 8px;
     margin-bottom: 1vh;
-    text-decoration: none;
+    text-decoration: none;    
 }
 
 /* .typesImg {
@@ -21,11 +21,21 @@
 .text {
     text-decoration: none;
     font-family: 'Verdana', sans-serif;
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: rgba(48, 30, 9, 0.616);
+    margin-top: 0px
 }
 
 .none {
     text-decoration: none;
     color: rgba(48, 30, 9, 0.616);
+}
+
+.margin{
+    margin-bottom: 0;
+    text-decoration: none;
+    font-family: 'Verdana', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(48, 30, 9, 0.616);
+    
 }

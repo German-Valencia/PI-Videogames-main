@@ -76,6 +76,22 @@
     box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.651);
     transition: box-shadow 0.3s;
   }
+
+  .inputDescription {
+    width: 9vw;
+    height: 12.5vh;
+    border: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-family: "Verdana", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    background: #f5f5f5;
+    color: #333;
+    outline: none;
+    box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.651);
+    transition: box-shadow 0.3s;
+  }
   
   .p {
     font-family: "Verdana", sans-serif;

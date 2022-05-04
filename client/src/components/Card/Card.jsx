@@ -16,8 +16,9 @@ export default function Card({ name, image, genres, id, createdInDb, rating }) {
             height="250vh"
           />
           <h2>{name}</h2>
-          <div>Rating: {rating}</div>
-          <h4>Genres:</h4>
+          <h3 className={styles.margin}>Rating:</h3>
+          <div className={styles.text}>{rating}</div> 
+          <h3 className={styles.margin}> Genres:</h3>
           {!createdInDb ? (
             <div className={styles.genres}>
               {genres?.map((e, k) => {

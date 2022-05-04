@@ -55,7 +55,7 @@ const VideogameCreate = () => {
       errors.description =
         "Description required. Higher than 5 characters and less than 200 ";
     }
-    
+
     if (!validateUrl.test(input.img)) {
       errors.img = "URL required";
     }
@@ -160,6 +160,7 @@ const VideogameCreate = () => {
         }}
       >
         <h2 className={styles.h2}>Create Videogame</h2>
+
         <div className={styles.div}>
           <div className={styles.divito}>
             <label className={styles.label}>Name:</label>
@@ -198,19 +199,8 @@ const VideogameCreate = () => {
               placeholder="YYYY/MM/DD"
             />
             <p className={styles.p}>{errors.released}</p>
-            <label className={styles.label}>Description:</label>
-            <input
-              className={styles.input}
-              type="text"
-              value={input.description}
-              name="description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              placeholder="Description"
-            />
-            <p className={styles.p}>{errors.description}</p>
           </div>
+
           <div className={styles.divito}>
             <label className={styles.label}>Image:</label>
             <input
@@ -224,6 +214,19 @@ const VideogameCreate = () => {
               placeholder="URL Image..."
             />
             <p className={styles.p}>{errors.img}</p>
+
+            <label className={styles.label}>Description:</label>
+            <textarea
+              className={styles.inputDescription}
+              type="text"
+              value={input.description}
+              name="description"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              placeholder="Description"
+            />
+            <p className={styles.p}>{errors.description}</p>
           </div>
         </div>
         <div className={styles.element}>
