@@ -24,7 +24,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
-  height: 188px;
+  height: 17vh;
   margin: 10px;
 }
 .col2{
@@ -59,7 +59,7 @@
       box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.651); */
     background-color: rgba(223, 226, 255, 0.842);
     box-shadow: 0px 0px 5px 0px #0026ffa8;
-    height: 35vw;
+    height: vh;
     width: 27vw;
   
   }
@@ -91,6 +91,7 @@
     font-family: "Verdana", sans-serif;
     font-size: 1rem;
     color: rgba(48, 30, 9, 0.616);
+    justify-content:center;
   }
   
   

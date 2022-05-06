@@ -10,7 +10,7 @@ import {
   ORDER_RATING,
   POST_VIDEOGAME,
   GET_DETAILS,
-  CLEAN_DETAIL,  
+  CLEAN_DETAIL,
 } from "../actions";
 
 const initialState = {
@@ -41,16 +41,19 @@ function rootReducer(state = initialState, action) {
         ...state,
         genres: action.payload,
       };
-      case GET_ALL_PLATFORMS:
-        return{
-          ...state,
-          platforms: action.payload,
-        }
+    case GET_ALL_PLATFORMS:
+      return {
+        ...state,
+        platforms: action.payload,
+      };
     case FILTER_CREATED:
       let copy = state.allVideogames;
       let createdFiltered;
       if (action.payload === "created") {
         createdFiltered = copy.filter((e) => e.createdInDb);
+        createdFiltered.length === 0
+          ? alert("videogame not created")
+          : console.log("ok");
       } else if (action.payload === "api") {
         createdFiltered = copy.filter((e) => !e.createdInDb);
       } else {
@@ -58,7 +61,7 @@ function rootReducer(state = initialState, action) {
       }
       return {
         ...state,
-        videogames: createdFiltered,
+        videogames: createdFiltered.length === 0 ? copy : createdFiltered,
       };
     case FILTER_GENRE:
       let copyTwo = state.allVideogames;
