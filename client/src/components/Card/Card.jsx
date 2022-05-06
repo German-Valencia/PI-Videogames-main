@@ -15,7 +15,7 @@ export default function Card({ name, image, genres, id, createdInDb, rating }) {
             width="200px"
             height="250vh"
           />
-          <h2>{name}</h2>
+          <h3>{name}</h3>
           <h3 className={styles.margin}>Rating:</h3>
           <div className={styles.text}>{rating}</div> 
           <h3 className={styles.margin}> Genres:</h3>

@@ -34,80 +34,84 @@ const Detail = (props) => {
                   <b>Id:</b> #{e.id}
                 </p>
                 <img
+                  className={styles.img}
                   src={e.img ? e.img : noImage}
                   alt="img not found"
-                  height="250px"
-                  width="400px"
                 />
 
                 <div className={styles.col1}>
                   <div className={styles.col2}>
-                    <p>Genres:</p>
-                    <div className={styles.types}>
-                      <h3>
-                        {!e.createdInDb ? (
-                          <div className={styles.genres}>
-                            {e.genres?.map((e, k) => {
-                              return (
-                                <div className={styles.genres} key={k}>
-                                  <p className={styles.text}>{e},</p>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        ) : (
-                          <div className={styles.genres}>
-                            {e.genres?.map((e, k) => {
-                              return (
-                                <div className={styles.genres} key={k}>
-                                  <p className={styles.text}> {e.name}, </p>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </h3>
+                    <div className={styles.titles}>Genres:</div>
+                    <div>
+                      {!e.createdInDb ? (
+                        <div>
+                          {e.genres?.map((e, k) => {
+                            return (
+                              <div className={styles.genres1} key={k}>
+                                <div className={styles.text}>{e},</div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div className={styles.genres1}>
+                          {e.genres?.map((e, k) => {
+                            return (
+                              <div className={styles.genres1} key={k}>
+                                <div className={styles.text}> {e.name}, </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
 
-                    <h5 className={styles.h5}>Rating: {e.rating}</h5>
+                    <div className={styles.titles}>Rating:</div>
+                    <div className={styles.h5}>{e.rating}</div>
                   </div>
-                  <div>
-                    <p>Platfomrs:</p>
-                    <div className={styles.types}>
-                      <h3>
+
+                  <div className={styles.col2}>
+                    <div className={styles.titles}>Platforms:</div>
+                    <div>
+                      <div>
                         <div className={styles.types}>
-                          <h3>
+                          <div>
                             {!e.createdInDb ? (
-                              <div className={styles.platforms}>
+                              <div>
                                 {e.platforms?.map((e, k) => {
                                   return (
-                                    <div className={styles.genres} key={k}>
-                                      <p className={styles.text}>{e},</p>
+                                    <div className={styles.genres1} key={k}>
+                                      <div className={styles.text}>{e},</div>
                                     </div>
                                   );
                                 })}
                               </div>
                             ) : (
-                              <div className={styles.genres}>
+                              <div className={styles.genres1}>
                                 {e.platforms?.map((e, k) => {
                                   return (
-                                    <div className={styles.genres} key={k}>
-                                      <p className={styles.text}> {e.name}, </p>
+                                    <div className={styles.genres1} key={k}>
+                                      <div className={styles.text}>
+                                        {" "}
+                                        {e.name},{" "}
+                                      </div>
                                     </div>
                                   );
                                 })}
                               </div>
                             )}
-                          </h3>
+                          </div>
                         </div>
-                      </h3>
+                      </div>
                     </div>
-
-                    <h5 className={styles.h5}>Released: {e.released}</h5>
+                    <div className={styles.titles}>Released: </div>
+                    <div className={styles.h5}>{e.released}</div>
                   </div>
                 </div>
-
-                <h5 className={styles.h5}>Description: {e.description}</h5>
+                <div className={styles.text}><b>Description:</b></div>
+                <div className={styles.description}>
+                  <div className={styles.h5}> {e.description}</div>
+                </div>
               </div>
             </div>
           ) : (
