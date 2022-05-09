@@ -16,7 +16,7 @@ export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const getVideogames = () => {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/videogames");
+      let json = await axios.get("http://localhost:3001/videogames");      
       return dispatch({
         type: GET_VIDEOGAMES,
         payload: json.data,
@@ -103,8 +103,8 @@ export const filterRating = (payload) => {
 export const getVideogameByName = (payload) => {
   return async (dispatch) => {
     try {
-      var json = await axios.get(
-        `http://localhost:3001/videogames?name=${payload}`
+      let json = await axios.get(
+        `http://localhost:3001/videogames/?name=${payload}`
       );
       return dispatch({
         type: GET_VIDEOGAME_NAME,

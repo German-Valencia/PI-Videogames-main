@@ -7,9 +7,9 @@ const router = express.Router();
 const url = `https://api.rawg.io/api/genres?key=${API_KEY}`;
 
 router.get("/", async (req, res) => {
-  const genreApi = await axios.get(url);  
+  const genreApi = await axios.get(url);
   const genre = genreApi.data.results.map((e) => e.name);
-  const id = genreApi.data.results.map((e) => e.id);  
+  const id = genreApi.data.results.map((e) => e.id);
 
   genre.forEach((e, i) => {
     Genre.findOrCreate({
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     });
   });
 
-  const allGenres = await Genre.findAll();
+  const allGenres = await Genre.findAll({ order: [["name", "ASC"]] });
   res.send(allGenres);
 });
 

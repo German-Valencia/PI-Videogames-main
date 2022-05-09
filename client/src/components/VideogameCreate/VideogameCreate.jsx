@@ -106,10 +106,7 @@ const VideogameCreate = () => {
       !errors.name &&
       !errors.rating &&
       !errors.released &&
-      !errors.description &&
-      /*  !errors.speed &&
-      !errors.height &&
-      !errors.weight && */
+      !errors.description &&   
       !errors.img
     ) {
       dispatch(postVideogame(input));
@@ -117,10 +114,7 @@ const VideogameCreate = () => {
         name: "",
         rating: "",
         released: "",
-        description: "",
-        /*   speed: "",
-        height: "",
-        weight: "", */
+        description: "",    
         genres: [],
         platforms: [],
         img: "",

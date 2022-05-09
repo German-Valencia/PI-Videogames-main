@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     });
   });
 
-  const allPlatforms = await Platform.findAll();
+  const allPlatforms = await Platform.findAll({ order: [["name", "ASC"]] });
   res.send(allPlatforms);
 });
 
